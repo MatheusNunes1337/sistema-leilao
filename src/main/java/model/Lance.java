@@ -13,12 +13,21 @@ public class Lance {
 		super();
 	}
 
-	public Lance(double valorLance, LocalTime horaLance, Participante participante, ItemLeilao item) {
+	public Lance(int id, double valorLance, LocalTime horaLance, Participante participante, ItemLeilao item) {
 		super();
+		this.id = id;
 		this.valorLance = valorLance;
 		this.horaLance = horaLance;
 		this.participante = participante;
 		this.item = item;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getValorLance() {
@@ -55,8 +64,8 @@ public class Lance {
 
 	@Override
 	public String toString() {
-		return "Lance [valorLance=" + valorLance + ", horaLance=" + horaLance + ", participante=" + participante
-				+ ", item=" + item + "]";
+		return "Lance [id=" + id + ", valorLance=" + valorLance + ", horaLance=" + horaLance + ", participante="
+				+ participante + ", item=" + item + "]";
 	}
-	
+
 }

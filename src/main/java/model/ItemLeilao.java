@@ -15,12 +15,20 @@ public class ItemLeilao {
 		super();
 	}
 
-	public ItemLeilao(String titulo, String descricao, double lanceMinimo, boolean arrematado) {
+	public ItemLeilao(int id, String titulo, String descricao, double lanceMinimo, boolean arrematado) {
 		super();
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.lanceMinimo = lanceMinimo;
 		this.arrematado = arrematado;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -65,10 +73,9 @@ public class ItemLeilao {
 
 	@Override
 	public String toString() {
-		return "ItemLeilao [titulo=" + titulo + ", descricao=" + descricao + ", lanceMinimo=" + lanceMinimo
-				+ ", arrematado=" + arrematado + ", lances=" + lances + "]";
+		return "ItemLeilao [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", lanceMinimo="
+				+ lanceMinimo + ", arrematado=" + arrematado + ", lances=" + lances + "]";
 	}
-	
-	
+
 	
 }
