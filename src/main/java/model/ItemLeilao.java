@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemLeilao {
+	private int id;
 	private String titulo;
 	private String descricao;
 	private double lanceMinimo;
@@ -50,8 +51,8 @@ public class ItemLeilao {
 		return arrematado;
 	}
 
-	public void setArrematado(boolean arrematado) {
-		this.arrematado = arrematado;
+	public void arrematarItem() {
+		this.arrematado = true;
 	}
 
 	public List<Lance> getLances() {
