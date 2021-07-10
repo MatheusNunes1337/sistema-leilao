@@ -1,4 +1,4 @@
-package model;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,5 +18,4 @@ public class BaseDAO {
 	public static void main(String[] args) {
 		System.out.println(BaseDAO.getConnection());
 	}
-
 }
