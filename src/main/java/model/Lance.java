@@ -8,6 +8,7 @@ public class Lance {
 	private LocalTime horaLance;
 	private Participante participante;
 	private ItemLeilao item;
+	private boolean situacao;
 	
 	public Lance() {
 		super();
@@ -20,6 +21,7 @@ public class Lance {
 		this.horaLance = horaLance;
 		this.participante = participante;
 		this.item = item;
+		this.situacao = true;
 	}
 
 	public int getId() {
@@ -61,11 +63,20 @@ public class Lance {
 	public void setItem(ItemLeilao item) {
 		this.item = item;
 	}
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	@Override
 	public String toString() {
 		return "Lance [id=" + id + ", valorLance=" + valorLance + ", horaLance=" + horaLance + ", participante="
-				+ participante + ", item=" + item + "]";
+				+ participante + ", item=" + item + ", situacao=" + situacao + "]";
 	}
+
 
 }

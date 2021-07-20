@@ -11,6 +11,7 @@ public class Participante {
 	private String endereco;
 	private String telefone;
 	private List<Participante> lances = new ArrayList<>();
+	private boolean situacao;
 	
 	public Participante() {
 		super();
@@ -24,6 +25,7 @@ public class Participante {
 		this.senha = senha;
 		this.endereco = endereco;
 		this.telefone = telefone;
+		this.situacao = true;
 	}
 
 	public int getId() {
@@ -80,6 +82,14 @@ public class Participante {
 
 	public void setLances(List<Participante> lances) {
 		this.lances = lances;
+	}
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
 	}
 
 	@Override

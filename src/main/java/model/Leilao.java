@@ -12,20 +12,20 @@ public class Leilao {
 	private LocalDate dataFinal;
 	private LocalTime horaFinal;
 	private List<ItemLeilao> itens = new ArrayList<>();
+	private boolean situacao;
 	
 	public Leilao() {
 		super();
 	}
 
-	public Leilao(int id, LocalDate dataInicio, LocalTime horaInicio, LocalDate dataFinal, LocalTime horaFinal,
+	public Leilao(int id, LocalDate dataInicio, LocalTime horaInicio,
 			List<ItemLeilao> itens) {
 		super();
 		this.id = id;
 		this.dataInicio = dataInicio;
 		this.horaInicio = horaInicio;
-		this.dataFinal = dataFinal;
-		this.horaFinal = horaFinal;
 		this.itens = itens;
+		this.situacao = true;
 	}
 
 	public int getId() {
@@ -40,8 +40,16 @@ public class Leilao {
 		return dataInicio;
 	}
 
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
 	public LocalTime getHoraInicio() {
 		return horaInicio;
+	}
+
+	public void setHoraInicio(LocalTime horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
 	public LocalDate getDataFinal() {
@@ -56,6 +64,10 @@ public class Leilao {
 		return horaFinal;
 	}
 
+	public void setHoraFinal(LocalTime horaFinal) {
+		this.horaFinal = horaFinal;
+	}
+
 	public List<ItemLeilao> getItens() {
 		return itens;
 	}
@@ -63,7 +75,15 @@ public class Leilao {
 	public void setItens(List<ItemLeilao> itens) {
 		this.itens = itens;
 	}
-	
+
+	public boolean isSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
+
 	public void iniciarLeilao() {
 		this.dataInicio = LocalDate.now();
 		this.horaInicio = LocalTime.now();
@@ -77,8 +97,10 @@ public class Leilao {
 	@Override
 	public String toString() {
 		return "Leilao [id=" + id + ", dataInicio=" + dataInicio + ", horaInicio=" + horaInicio + ", dataFinal="
-				+ dataFinal + ", horaFinal=" + horaFinal + ", itens=" + itens + "]";
+				+ dataFinal + ", horaFinal=" + horaFinal + ", itens=" + itens + ", situacao=" + situacao + "]";
 	}
+	
+	
 	
 	
 }

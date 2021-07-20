@@ -10,6 +10,7 @@ public class ItemLeilao {
 	private double lanceMinimo;
 	private boolean arrematado;
 	private List<Lance> lances = new ArrayList<>();
+	private boolean situacao;
 	
 	public ItemLeilao() {
 		super();
@@ -21,6 +22,7 @@ public class ItemLeilao {
 		this.descricao = descricao;
 		this.lanceMinimo = lanceMinimo;
 		this.arrematado = arrematado;
+		this.situacao = true;
 	}
 	
 	public int getId() {
@@ -70,12 +72,22 @@ public class ItemLeilao {
 	public void setLances(List<Lance> lances) {
 		this.lances = lances;
 	}
+	
+	public boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
 
 	@Override
 	public String toString() {
 		return "ItemLeilao [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", lanceMinimo="
-				+ lanceMinimo + ", arrematado=" + arrematado + ", lances=" + lances + "]";
+				+ lanceMinimo + ", arrematado=" + arrematado + ", lances=" + lances + ", situacao=" + situacao + "]";
 	}
+
+	
 
 	
 }
