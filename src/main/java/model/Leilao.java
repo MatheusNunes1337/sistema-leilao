@@ -27,6 +27,14 @@ public class Leilao {
 		this.itens = itens;
 		this.situacao = true;
 	}
+	
+	public Leilao(int id, LocalDate dataInicio, LocalTime horaInicio) {
+		super();
+		this.id = id;
+		this.dataInicio = dataInicio;
+		this.horaInicio = horaInicio;
+		this.situacao = true;
+	}
 
 	public int getId() {
 		return id;
@@ -76,7 +84,7 @@ public class Leilao {
 		this.itens = itens;
 	}
 
-	public boolean isSituacao() {
+	public boolean getSituacao() {
 		return situacao;
 	}
 
