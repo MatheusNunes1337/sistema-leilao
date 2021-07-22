@@ -8,6 +8,7 @@ public class Participante {
 	private String nome;
 	private String login;
 	private String senha;
+	private String email;
 	private String endereco;
 	private String telefone;
 	private List<Participante> lances = new ArrayList<>();
@@ -17,17 +18,18 @@ public class Participante {
 		super();
 	}
 
-	public Participante(int id, String nome, String login, String senha, String endereco, String telefone) {
+	public Participante(int id, String nome, String login, String senha, String email, String endereco, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.login = login;
 		this.senha = senha;
+		this.email = email;
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.situacao = true;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -58,6 +60,14 @@ public class Participante {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getEndereco() {
@@ -94,8 +104,11 @@ public class Participante {
 
 	@Override
 	public String toString() {
-		return "Participante [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", endereco="
-				+ endereco + ", telefone=" + telefone + ", lances=" + lances + "]";
+		return "Participante [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", email="
+				+ email + ", endereco=" + endereco + ", telefone=" + telefone + ", lances=" + lances + ", situacao="
+				+ situacao + "]";
 	}
+
+	
 	
 }
