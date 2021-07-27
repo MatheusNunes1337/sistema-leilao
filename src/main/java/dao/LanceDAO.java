@@ -100,8 +100,8 @@ public class LanceDAO extends BaseDAO {
 
 
 
-	private static boolean updateLance(double valor, LocalTime hora, int part_id, int item_id, boolean situacao, int id) {
-		final String sql = "UPDATE Lance SET valor = ?, hora = ?, participante_id = ?, item_id = ?, situacao = ? WHERE lance_id = ?";
+	private static boolean updateLance(double valor, int part_id, int item_id, boolean situacao, int id) {
+		final String sql = "UPDATE Lance SET valor = ?, participante_id = ?, item_id = ?, situacao = ? WHERE lance_id = ?";
 		try 
 		(
 		 	Connection conn = getConnection();
@@ -109,11 +109,10 @@ public class LanceDAO extends BaseDAO {
 		)
 		{
 			pstmt.setDouble(1, valor);
-			pstmt.setTime(2, Time.valueOf(hora));
-			pstmt.setInt(3, part_id);
-			pstmt.setInt(4, item_id);
-			pstmt.setBoolean(5, situacao);
-			pstmt.setInt(6, id);
+			pstmt.setInt(2, part_id);
+			pstmt.setInt(3, item_id);
+			pstmt.setBoolean(4, situacao);
+			pstmt.setInt(5, id);
 			int count = pstmt.executeUpdate();
 			return count > 0;
 				
@@ -147,15 +146,15 @@ public class LanceDAO extends BaseDAO {
 		Lance l = new Lance();
 		
 		l.setId(rs.getInt("lance_id"));
-		l.setValorLance(rs.getDouble("valorLance"));
-		l.setHoraLance(rs.getTime("horaLance").toLocalTime());
+		l.setValorLance(rs.getDouble("valor"));
+		l.setHoraLance(rs.getTime("hora").toLocalTime());
 		l.setParticipante(ParticipanteDAO.getParticipanteById(rs.getInt("participante_id")));
-		//l.setItem(itemDAO.getItemById(rs.getInt("item_id")));
+		l.setItem(ItemDAO.getItemById(rs.getInt("item_id")));
 		l.setSituacao(rs.getBoolean("situacao"));
 		return l;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(registrarLance(1500, 1, 1, true));
+		System.out.println(getLanceById(2));
 	}
 }

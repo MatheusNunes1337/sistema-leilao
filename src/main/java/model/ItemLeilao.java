@@ -15,8 +15,18 @@ public class ItemLeilao {
 	public ItemLeilao() {
 		super();
 	}
-
+	
 	public ItemLeilao(int id, String titulo, String descricao, double lanceMinimo, boolean arrematado) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.lanceMinimo = lanceMinimo;
+		this.arrematado = arrematado;
+		this.situacao = true;
+	}
+
+	public ItemLeilao(String titulo, String descricao, double lanceMinimo, boolean arrematado) {
 		super();
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -24,6 +34,7 @@ public class ItemLeilao {
 		this.arrematado = arrematado;
 		this.situacao = true;
 	}
+	
 	
 	public int getId() {
 		return id;
@@ -61,8 +72,8 @@ public class ItemLeilao {
 		return arrematado;
 	}
 
-	public void arrematarItem() {
-		this.arrematado = true;
+	public void arrematarItem(boolean status) {
+		this.arrematado = status;
 	}
 
 	public List<Lance> getLances() {
