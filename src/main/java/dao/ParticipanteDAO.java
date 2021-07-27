@@ -31,7 +31,7 @@ public class ParticipanteDAO extends BaseDAO {
 		
 	}
 
-	private static Participante getParticipanteById(int id) {
+	public static Participante getParticipanteById(int id) {
 		final String sql = "SELECT * FROM Participantes WHERE participante_id = ?";
 		try 
 			(
