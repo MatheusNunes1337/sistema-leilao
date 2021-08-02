@@ -10,7 +10,7 @@ import java.util.List;
 import model.Participante;
 
 public class ParticipanteDAO extends BaseDAO {
-	private static List<Participante> getParticipantes() {
+	public static List<Participante> getParticipantes() {
 		final String sql = "SELECT * FROM Participantes";
 		try 
 			(
@@ -53,7 +53,7 @@ public class ParticipanteDAO extends BaseDAO {
 		}
 	}
 
-	private static Participante getParticipanteByEmail(String email) {
+	public static Participante getParticipanteByEmail(String email) {
 		final String sql = "SELECT * FROM Participantes WHERE email = ?";
 		try 
 		(
@@ -75,7 +75,7 @@ public class ParticipanteDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean registrar(Participante p) {
+	public static boolean registrar(Participante p) {
 		final String sql = "INSERT INTO Participantes (nome, login, senha, email, endereco, telefone) VALUES (?, ?, ?, ?, ?, ?)";
 		try 
 		(
@@ -98,7 +98,7 @@ public class ParticipanteDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean updateParticipante(Participante p) {
+	public static boolean updateParticipante(Participante p) {
 		final String sql = "UPDATE Participantes SET nome = ?, login = ?, senha = ?, email = ?, endereco = ?, telefone = ?, situacao = ? WHERE participante_id = ?";
 		try 
 		
@@ -125,7 +125,7 @@ public class ParticipanteDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean softDeleteParticipante(int id, boolean situacao) {
+	public static boolean softDeleteParticipante(int id, boolean situacao) {
 		final String sql = "UPDATE Participantes SET situacao = ? WHERE participante_id = ?";
 		try 
 			(
