@@ -15,7 +15,7 @@ import java.util.List;
 import model.Leilao;
 
 public class LeilaoDAO extends BaseDAO {
-	private static List<Leilao> getLeiloes() {
+	public static List<Leilao> getLeiloesFinalizados() {
 		final String sql = "SELECT * FROM Leilao";
 		try 
 		(
@@ -34,8 +34,28 @@ public class LeilaoDAO extends BaseDAO {
 			return null;
 		}
 	}
+	
+	public static List<Leilao> getLeiloesEmAndamento() {
+		final String sql = "SELECT * FROM Leilao WHERE dataFinal IS NULL";
+		try 
+		(
+		 	Connection conn = getConnection();
+		 	PreparedStatement pstmt = conn.prepareStatement(sql);
+		 	ResultSet rs = pstmt.executeQuery();
+		)
+		{
+			List<Leilao> leiloes = new ArrayList<>();
+			while(rs.next()) {
+				leiloes.add(resultSetToLeilaoEmAndamento(rs));
+			}
+			return leiloes; 	
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-	private static Leilao getLeilaoById(int id) {
+	public static Leilao getLeilaoById(int id) {
 		final String sql = "SELECT * FROM Leilao WHERE leilao_id = ?";
 		try 
 			(
@@ -57,7 +77,7 @@ public class LeilaoDAO extends BaseDAO {
 		}
 	}
 
-	private static List<Leilao> getLeilaoByDate(String dataInicio) {
+	public static List<Leilao> getLeilaoByDate(String dataInicio) {
 		final String sql = "SELECT * FROM Leilao WHERE dataInicio = ?";
 		try 
 			(
@@ -78,7 +98,7 @@ public class LeilaoDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean iniciarLeilao(Leilao l) {
+	public static boolean iniciarLeilao(Leilao l) {
 		final String sql = "INSERT INTO Leilao (dataInicio, horaInicio, situacao) VALUES (?, ?, ?)";
 		try 
 			(
@@ -98,7 +118,7 @@ public class LeilaoDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean finalizarLeilao(LocalDate dataFinal, LocalTime horaFinal, int id) {
+	public static boolean finalizarLeilao(LocalDate dataFinal, LocalTime horaFinal, int id) {
 		final String sql = "UPDATE Leilao SET dataFinal = ?, horaFinal = ? WHERE leilao_id = ?";
 		try 
 			(
@@ -118,7 +138,7 @@ public class LeilaoDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean updateLeilao(LocalDate dataInicio, LocalTime horaInicio, LocalDate dataFinal, LocalTime horaFinal, boolean situacao, int id) {
+	public static boolean updateLeilao(LocalDate dataInicio, LocalTime horaInicio, LocalDate dataFinal, LocalTime horaFinal, boolean situacao, int id) {
 		final String sql = "UPDATE Leilao SET dataInicio = ?, horaInicio = ?, dataFinal = ?, horaFinal = ?, situacao = ? WHERE leilao_id = ?";
 		try 
 			(
@@ -141,7 +161,7 @@ public class LeilaoDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean softDeleteLeilao(int id, boolean situacao) {
+	public static boolean softDeleteLeilao(int id, boolean situacao) {
 		final String sql = "UPDATE Leilao SET situacao = ? WHERE leilao_id = ?";
 		try 
 			(
@@ -168,6 +188,15 @@ public class LeilaoDAO extends BaseDAO {
 		l.setHoraInicio(rs.getTime("horaInicio").toLocalTime());
 		l.setDataFinal(rs.getDate("dataFinal").toLocalDate());
 		l.setHoraFinal(rs.getTime("horaFinal").toLocalTime());
+		l.setSituacao(rs.getBoolean("situacao"));
+		return l;
+	}
+	
+	private static Leilao resultSetToLeilaoEmAndamento(ResultSet rs) throws SQLException {
+		Leilao l = new Leilao();
+		l.setId(rs.getInt("leilao_id"));
+		l.setDataInicio(rs.getDate("dataInicio").toLocalDate());
+		l.setHoraInicio(rs.getTime("horaInicio").toLocalTime());
 		l.setSituacao(rs.getBoolean("situacao"));
 		return l;
 	}

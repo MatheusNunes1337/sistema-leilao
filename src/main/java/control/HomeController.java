@@ -24,7 +24,7 @@ public class HomeController {
 					ParticipanteController.main(null);
 					break;
 				case 2:
-                    //LeilaoController.main(null);
+                    LeilaoController.main(null);
 					break;
 				case 3:
 					//ItemController.main(null);
