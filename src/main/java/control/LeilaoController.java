@@ -48,7 +48,7 @@ public class LeilaoController {
 					getByDate();
 					break;
 				case 7:
-					//update();
+					update();
 					break;
 				case 8:
 					delete();
@@ -130,40 +130,40 @@ public class LeilaoController {
                 String dataFinal = leilao.getDataFinal().toString();
                 String horaFinal = leilao.getHoraFinal().toString();
                 
-                if(leilao == null){
+                if(leilao == null) {
                     System.out.println("Id inválido.");
-                } else{
+                } else {
                 	System.out.println("Data inicial: " + leilao.getDataInicio());
                     System.out.print("Alterar? (0-sim/1-não) ");
                     if(input.nextInt() == 0){
                     	input.nextLine();
-                        System.out.println("Digite a nova data de inicio do leilão: ");
+                        System.out.println("Digite a nova data de inicio do leilão YYYY-MM-DD:");
                         dataInicial = input.nextLine();
                     }
                     System.out.println("Hora inicial: " + leilao.getHoraInicio());
                     System.out.print("Alterar? (0-sim/1-não) ");
                     if(input.nextInt() == 0){
                     	input.nextLine();
-                        System.out.println("Digite a nova hora inicial do leilão: ");
+                        System.out.println("Digite a nova hora inicial do leilão HH:MM:SS:");
                         horaInicial = input.nextLine();
                     }
                     System.out.println("Data final: " + leilao.getDataFinal());
                     System.out.print("Alterar? (0-sim/1-não) ");
                     if(input.nextInt() == 0){
                     	input.nextLine();
-                        System.out.println("Digite a nova data final do leilão: ");
+                        System.out.println("Digite a nova data final do leilão YYYY-MM-DD: ");
                         dataFinal = input.nextLine();
                     }
                     System.out.println("Hora final: " + leilao.getHoraFinal());
                     System.out.print("Alterar? (0-sim/1-não) ");
                     if(input.nextInt() == 0){
                     	input.nextLine();
-                        System.out.println("Digite a nova hora final do leilão: ");
+                        System.out.println("Digite a nova hora final do leilão HH:MM:SS: ");
                         horaFinal = input.nextLine();
                     }
                    
-                    leilao.setSituacao(true);
-                    if(LeilaoDAO.updateLeilao(leilao)){
+                    boolean situacao = true;
+                    if(LeilaoDAO.updateLeilao(dataInicial, horaInicial, dataFinal, horaFinal, situacao, id)){
                         System.out.println("Informações alteradas com sucesso");
                     }else{
                         System.out.println("Erro ao tentar alterar as informações do leilão. Tente novamente.");

@@ -138,7 +138,7 @@ public class LeilaoDAO extends BaseDAO {
 		}
 	}
 
-	public static boolean updateLeilao(LocalDate dataInicio, LocalTime horaInicio, LocalDate dataFinal, LocalTime horaFinal, boolean situacao, int id) {
+	public static boolean updateLeilao(String dataInicio, String horaInicio, String dataFinal, String horaFinal, boolean situacao, int id) {
 		final String sql = "UPDATE Leilao SET dataInicio = ?, horaInicio = ?, dataFinal = ?, horaFinal = ?, situacao = ? WHERE leilao_id = ?";
 		try 
 			(
@@ -146,10 +146,10 @@ public class LeilaoDAO extends BaseDAO {
 			 	PreparedStatement pstmt = conn.prepareStatement(sql);
 			)
 		{
-			pstmt.setDate(1, Date.valueOf(dataInicio));
-			pstmt.setTime(2, Time.valueOf(horaInicio));
-			pstmt.setDate(3, Date.valueOf(dataFinal));
-			pstmt.setTime(4, Time.valueOf(horaFinal));
+			pstmt.setString(1, dataInicio);
+			pstmt.setString(2, horaInicio);
+			pstmt.setString(3, dataFinal);
+			pstmt.setString(4, horaFinal);
 			pstmt.setBoolean(5, situacao);
 			pstmt.setInt(6, id);
 			int count = pstmt.executeUpdate();
@@ -204,7 +204,7 @@ public class LeilaoDAO extends BaseDAO {
 	public static void main(String[] args) {
 		//Leilao l = new Leilao(1, LocalDate.now(), LocalTime.now());
 		//System.out.println(iniciarLeilao(l));
-		System.out.println(updateLeilao(LocalDate.now().plusDays(2), LocalTime.now(), LocalDate.now().plusDays(3), LocalTime.now().plusHours(2), true, 1));
+		//System.out.println(updateLeilao(LocalDate.now().plusDays(2), LocalTime.now(), LocalDate.now().plusDays(3), LocalTime.now().plusHours(2), true, 1));
 		
 	}
 }
