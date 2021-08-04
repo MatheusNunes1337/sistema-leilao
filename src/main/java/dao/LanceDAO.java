@@ -13,7 +13,7 @@ import model.Lance;
 
 
 public class LanceDAO extends BaseDAO {
-	private static List<Lance> getLances() {
+	public static List<Lance> getLances() {
 		final String sql = "SELECT * FROM Lance";
 		try 
 		(
@@ -33,7 +33,7 @@ public class LanceDAO extends BaseDAO {
 		}
 	}
 
-	private static Lance getLanceById(int id) {
+	public static Lance getLanceById(int id) {
 		final String sql = "SELECT * FROM Lance WHERE lance_id = ?";
 		try 
 		(
@@ -55,7 +55,7 @@ public class LanceDAO extends BaseDAO {
 		}
 	}
 
-	private static List<Lance> getLanceGreaterThan(double valor) {
+	public static List<Lance> getLanceGreaterThan(double valor) {
 		final String sql = "SELECT * FROM Lance WHERE valor > ?";
 		try 
 		(
@@ -76,7 +76,7 @@ public class LanceDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean registrarLance(double valor, int part_id, int item_id, boolean situacao) {
+	public static boolean registrarLance(double valor, int part_id, int item_id, boolean situacao) {
 		final String sql = "INSERT INTO Lance (valor, hora, participante_id, item_id, situacao) VALUES (?, ?, ?, ?, ?)";
 		try 
 		(
@@ -100,8 +100,8 @@ public class LanceDAO extends BaseDAO {
 
 
 
-	private static boolean updateLance(double valor, int part_id, int item_id, boolean situacao, int id) {
-		final String sql = "UPDATE Lance SET valor = ?, participante_id = ?, item_id = ?, situacao = ? WHERE lance_id = ?";
+	public static boolean updateLance(double valor, int id) {
+		final String sql = "UPDATE Lance SET valor = ? WHERE lance_id = ?";
 		try 
 		(
 		 	Connection conn = getConnection();
@@ -109,10 +109,7 @@ public class LanceDAO extends BaseDAO {
 		)
 		{
 			pstmt.setDouble(1, valor);
-			pstmt.setInt(2, part_id);
-			pstmt.setInt(3, item_id);
-			pstmt.setBoolean(4, situacao);
-			pstmt.setInt(5, id);
+			pstmt.setInt(2, id);
 			int count = pstmt.executeUpdate();
 			return count > 0;
 				
@@ -122,7 +119,7 @@ public class LanceDAO extends BaseDAO {
 		}
 	}
 
-	private static boolean softDeleteLance(int id, boolean situacao) {
+	public static boolean softDeleteLance(int id, boolean situacao) {
 		final String sql = "UPDATE Lance SET situacao = ? WHERE lance_id = ?";
 		try 
 		(
