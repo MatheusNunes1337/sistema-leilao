@@ -76,7 +76,7 @@ public class LanceDAO extends BaseDAO {
 		}
 	}
 
-	public static boolean registrarLance(double valor, int part_id, int item_id, boolean situacao) {
+	public static boolean registrarLance(double valor, int part_id, int item_id, boolean situacao) throws Exception {
 		final String sql = "INSERT INTO Lance (valor, hora, participante_id, item_id, situacao) VALUES (?, ?, ?, ?, ?)";
 		try 
 		(
@@ -84,6 +84,9 @@ public class LanceDAO extends BaseDAO {
 		 	PreparedStatement pstmt = conn.prepareStatement(sql);
 		)
 		{
+			if(valor < ItemDAO.getItemById(item_id).getLanceMinimo()) {
+				throw new LanceBaixoException();
+			}
 			pstmt.setDouble(1, valor);
 			pstmt.setTime(2, Time.valueOf(LocalTime.now()));
 			pstmt.setInt(3, part_id);
@@ -153,5 +156,11 @@ public class LanceDAO extends BaseDAO {
 
 	public static void main(String[] args) {
 		System.out.println(getLanceById(2));
+	}
+}
+
+class LanceBaixoException extends Exception {
+	public LanceBaixoException() {
+		super("Erro, o valor do lance informado é menor que o valor mínimo do item.");
 	}
 }

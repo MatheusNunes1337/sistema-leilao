@@ -65,11 +65,15 @@ public class LanceController {
          input.nextLine();
          boolean situacao = true;
 
-        if(LanceDAO.registrarLance(valor, part_id, item_id, situacao)) {
-        	System.out.println("\nlance realizado com sucesso!");
-        } else {
-        	System.out.println("\nHouve um erro ao tentar realizar o lance");
-        }
+        try {
+			if(LanceDAO.registrarLance(valor, part_id, item_id, situacao)) {
+				System.out.println("\nlance realizado com sucesso!");
+			} else {
+				System.out.println("\nHouve um erro ao tentar realizar o lance");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void getAll() {
