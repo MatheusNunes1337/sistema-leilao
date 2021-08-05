@@ -27,13 +27,10 @@ public class HomeController {
                     LeilaoController.main(null);
 					break;
 				case 3:
-					//ItemController.main(null);
+					ItemController.main(null);
 					break;
 				case 4:
-					//ItemController.main(null);
-					break;
-				case 5:
-					//LanceController.main(null);
+					LanceController.main(null);
 					break;	
 				default:
 					if(opcao != 0) System.out.println("Opção inválida.");

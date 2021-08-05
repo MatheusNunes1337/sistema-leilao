@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.ItemLeilao;
-import model.Lance;
 
 public class ItemDAO extends BaseDAO {
 	public static List<ItemLeilao> getItens() {
@@ -164,7 +163,6 @@ public class ItemDAO extends BaseDAO {
 		i.setDescricao(rs.getString("descricao"));
 		i.setLanceMinimo(rs.getDouble("lanceMinimo"));
 		i.setStatusArremate(rs.getBoolean("arrematado"));
-		i.setLances((List<Lance>) LanceDAO.getLanceByItem(i.getId()));
 		i.setSituacao(rs.getBoolean("situacao"));
 		return i;
 	}
