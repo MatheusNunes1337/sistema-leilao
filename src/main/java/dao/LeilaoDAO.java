@@ -188,6 +188,7 @@ public class LeilaoDAO extends BaseDAO {
 		l.setHoraInicio(rs.getTime("horaInicio").toLocalTime());
 		l.setDataFinal(rs.getDate("dataFinal").toLocalDate());
 		l.setHoraFinal(rs.getTime("horaFinal").toLocalTime());
+		l.setItens(ItemDAO.getItensByLeilao(l.getId()));
 		l.setSituacao(rs.getBoolean("situacao"));
 		return l;
 	}
@@ -197,6 +198,7 @@ public class LeilaoDAO extends BaseDAO {
 		l.setId(rs.getInt("leilao_id"));
 		l.setDataInicio(rs.getDate("dataInicio").toLocalDate());
 		l.setHoraInicio(rs.getTime("horaInicio").toLocalTime());
+		l.setItens(ItemDAO.getItensByLeilao(l.getId()));
 		l.setSituacao(rs.getBoolean("situacao"));
 		return l;
 	}

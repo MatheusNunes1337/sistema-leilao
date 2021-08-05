@@ -72,7 +72,7 @@ public class ItemLeilao {
 		return arrematado;
 	}
 
-	public void arrematarItem(boolean status) {
+	public void setStatusArremate(boolean status) {
 		this.arrematado = status;
 	}
 

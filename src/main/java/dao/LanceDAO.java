@@ -54,6 +54,27 @@ public class LanceDAO extends BaseDAO {
 			return null;
 		}
 	}
+	
+	public static List<Lance> getLanceByItem(int id) {
+		final String sql = "SELECT * FROM Lance WHERE item_id = ?";
+		try 
+		(
+		 	Connection conn = getConnection();
+		 	PreparedStatement pstmt = conn.prepareStatement(sql);
+		)
+		{
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			List<Lance> lances = new ArrayList<>();
+			while(rs.next()) {
+				lances.add(resultSetToLance(rs));
+			}
+			return lances; 	
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public static List<Lance> getLanceGreaterThan(double valor) {
 		final String sql = "SELECT * FROM Lance WHERE valor > ?";
