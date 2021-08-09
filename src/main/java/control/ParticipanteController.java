@@ -84,7 +84,7 @@ public class ParticipanteController {
         System.out.print("\nDigite o id do participante ");
         Participante participante = ParticipanteDAO.getParticipanteById(input.nextInt());
         input.nextLine();
-        if(participante != null) {
+        if(participante.getId() != 0) {
         	System.out.println(participante);
         } else {
         	System.out.println("Nenhum participante com esse Id foi encontrado no sistema. Tente novamente.");

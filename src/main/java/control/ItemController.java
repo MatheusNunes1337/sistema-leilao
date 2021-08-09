@@ -88,7 +88,7 @@ public class ItemController {
         System.out.print("\nDigite o id do item ");
         ItemLeilao item = ItemDAO.getItemById(input.nextInt());
         input.nextLine();
-        if(item != null) {
+        if(item.getId() != 0) {
         	System.out.println(item);
         } else {
         	System.out.println("Nenhum item com esse id foi encontrado no sistema. Tente novamente.");

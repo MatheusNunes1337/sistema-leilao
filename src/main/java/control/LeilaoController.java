@@ -97,7 +97,7 @@ public class LeilaoController {
         System.out.print("\nDigite o id do leilão ");
         Leilao leilão = LeilaoDAO.getLeilaoById(input.nextInt());
         input.nextLine();
-        if(leilão != null) {
+        if(leilão.getId() != 0) {
         	System.out.println(leilão);
         } else {
         	System.out.println("Nenhum leilão com esse Id foi encontrado no sistema. Tente novamente.");

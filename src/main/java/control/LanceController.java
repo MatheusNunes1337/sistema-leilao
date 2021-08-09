@@ -84,7 +84,7 @@ public class LanceController {
         System.out.print("\nDigite o id do lance ");
         Lance lance = LanceDAO.getLanceById(input.nextInt());
         input.nextLine();
-        if(lance != null) {
+        if(lance.getId() != 0) {
         	System.out.println(lance);
         } else {
         	System.out.println("Nenhum lance com esse Id foi encontrado no sistema. Tente novamente.");
